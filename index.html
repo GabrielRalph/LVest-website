@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>press "c" to clear</div>
+    <div>press "o" to turn all on</div>
+    <div>press "t" to toggle all</div>
+    <div>press "s" to save to clipboard</div>
+    <div>press "0" set pen to erase</div>
+    <div>press "1" set pen to on</div>
+    <div>press "2" set pen to toggle </div>
+
+    <svg viewBox = "0 0 200 50">
+
+    </svg>
+</body>
+<script type = "module">
+    import {SvgPlus} from "./4.js"
+    let R = 9;
+    let C = 39;
+    let dx = 5;
+
+    let pen = 1;
+    let svg = new SvgPlus(document.querySelector("svg"));
+    let elements = [];
+    let display = [];
+    for (let c = 0; c < C; c++) {
+        let col = new Array(R);
+        col.fill(0);
+        display.push(col);
+        for (let r = 0; r < R; r++) {
+            /**
+             * @type {HTMLElement}
+             */
+            let g = svg.createChild("g");
+            g.createChild("rect", {x: (c+0.5) * dx, y: (r+0.5) *dx, width: 5, height: 5, fill: "white"});
+            g.createChild("rect", {x: (c+0.5) * dx, y: (r+0.5) *dx, rx: 1, width: 4, height: 4, class: "px" });
+            elements.push(g);
+            g.r = r;
+            g.c = c;
+            g.on = (val) => {
+                g.toggleAttribute("on", val);
+                console.log(g.hasAttribute("on"));
+                display[g.c][g.r] = g.hasAttribute("on") ? 1 : 0;
+            }
+
+            g.onclick = () => {g.on(pen)}
+            g.addEventListener("mouseenter", (e) => {
+                if (e.buttons == 1) g.on(pen);
+            })
+        }
+    }
+
+    window.addEventListener("keydown", (e) => {
+        if (e.key == "c" || e.key == "o" || e.key == "t") {
+            elements.forEach(g => g.on( e.key == "t" ? undefined : e.key == "o"))
+        } else if (e.key == "s") {
+            let name = prompt("Name please!")
+            let arr = `const byte ${name}[][9] = {${display.map(r => `{${r.join(',')}}`).join(",\n")}};`;
+            navigator.clipboard.writeText(arr);
+        } else if (e.key == "1") pen = true;
+        else if(e.key == "0") pen = false;
+        else if (e.key == "2") pen = undefined
+    })
+
+</script>
+<style>
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 95vw;
+        transform: translate(-50%, -50%);
+    }
+
+    [on] rect.px {
+        fill: red;
+    }
+</style>
+</html>
