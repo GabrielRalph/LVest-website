@@ -1,0 +1,194 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+.buttons {
+    padding: 0.5em 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: center;
+}
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap:0.5em;
+    padding: 0.5em;
+}
+.settings > div:first-child {
+     display: flex;
+     gap: 0.5em;
+     flex-direction: column;
+}
+.settings > div:first-child > div {
+    display: flex;
+    gap: 0.5em;
+}
+.editor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings > * {
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background: #ececec;
+}
+.grid {
+    gap: 0.5em;
+    padding: 0.5em;
+    background-color: white;;
+}
+.grid > div{
+    width: 2em;
+    height: 2em;
+    background-color: black;
+}
+.frames .grid > div {
+    width: 0.5em;
+    height: 0.5em;
+}
+.frames .grid {
+    gap: 0.1em;
+    margin: 0.3em;
+}
+matrix-anim {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+matrix-anim > div {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid rgb(26, 26, 26);
+}
+matrix-anim > div > div {
+    background: #363434
+}
+
+matrix-anim > div:last-child {
+    height: 100%;
+    border-top: none;
+}
+matrix-anim > div:last-child > div {
+    background-color: white;
+}
+
+matrix-anim > div > div:first-child {
+    width: 100%;
+}
+color-param-selector {
+    display: flex;
+    gap: 2em;
+}
+
+slider-input { width: 11.5em;}
+slider-255 {
+    display: flex;
+}
+
+
+pixel-setter {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    background: #d2cccc;
+    padding: 1em;
+    min-width: 20em;
+
+}
+
+
+.cps-box > div:first-child {
+    font-weight: bold;
+    margin-bottom: 0.25em;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+input, select, button{
+    outline: none;
+    border: none;
+    background-color: rgb(66, 66, 66);
+    color: white;
+    border-radius: 0.3em;
+    text-align: center;
+}
+button {
+    background-color: rgb(255, 119, 0);
+    font-size: 1.2em;
+}
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    
+    width: 3em;
+}
+
+input[type="number"]:focus {
+    background-color: rgb(43, 41, 41);
+
+}
+
+.color {
+    height: 2em;
+    min-width: 8em;
+}
+
+
+color-view {
+    align-items: center;
+    gap: 2em;
+    display: flex
+}
+
+.f-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.f-icon button {
+    position: absolute;
+    opacity: 0;
+    
+    transition: 0.3s ease-in-out opacity;
+}
+.f-icon button[name = "delete"] {
+    top: 0.25em;
+    left: 0.6em;
+}
+
+.f-icon:first-of-type button[name = "left"] {
+    display: none;
+}
+.f-icon:last-of-type button[name = "right"] {
+    display: none;
+}
+.f-icon button[name="left"] {
+    bottom: 0.25em;
+    left: 0.6em;
+}
+.f-icon button[name="right"] {
+    bottom: 0.25em;
+    right: 0.25em;
+}
+.f-icon button[name="copy"] {
+    right: 0.6em;
+    top: 0.25em;
+}
+
+.f-icon:hover button {
+    opacity: 1;
+}
